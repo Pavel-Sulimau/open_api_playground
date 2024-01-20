@@ -12,7 +12,13 @@ OpenAPI description (OAD) for the Weather API was found here: https://api.apis.g
 The weather OAD turns out to be of bad quality and lacking much data (which is good for the linter's example),
 more info about the types can be found on [their website](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/).
 
-After installing `Spectral` linter, the validation can be run by:
+After installing `Spectral` linter, the validation can be run by
 ```bash
 spectral lint openapi_definitions/visualcrossing_weather_api.yaml --ruleset openapi_ruleset.spectral.yaml
 ```
+or by
+```bash
+npm run validate_oad
+```
+
+Have fun!
