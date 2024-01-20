@@ -1,0 +1,17 @@
+name: open_api_playground
+description: A sample showing OpenAPI definition, swagger_dart_code_generator, prettier formatter, and Spectral linter.
+version: 1.0.0
+
+environment:
+  sdk: ^3.2.3
+
+dependencies:
+  chopper: ^7.1.0+1
+  json_annotation: ^4.8.0
+
+dev_dependencies:
+  lints: ^3.0.0
+  build_runner: ^2.3.3
+  chopper_generator: ^7.1.0
+  json_serializable: ^6.6.1
+  swagger_dart_code_generator: ^2.10.4

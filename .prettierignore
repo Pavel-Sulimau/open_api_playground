@@ -1,0 +1,2 @@
+# This ignore file has to exist on the same level where 'prettier' cli command is run, see https://github.com/prettier/prettier/issues/4081.
+.github

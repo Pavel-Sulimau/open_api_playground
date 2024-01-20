@@ -1,0 +1,45 @@
+name: CI Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  openapi-definition-checks:
+    timeout-minutes: 5
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies with npm
+        run: npm ci
+
+      - name: Validate formatting with Prettier
+        run: npm run validate_oad_formatting
+
+      # Run Spectral to validate OAD (Swagger) files and post annotations to a PR.
+      # Be aware that it does not support configuring the severity info to fail
+      # a PR, see https://github.com/stoplightio/spectral-action/issues/183, so
+      # the following run of the command from the terminal should do it.
+      - uses: stoplightio/spectral-action@latest
+        with:
+          file_glob: "openapi_definitions/*.yaml"
+          spectral_ruleset: "openapi_ruleset.spectral.yaml"
+
+      # Run Spectral from a terminal to ensure a PR is failing on 'warnings'+ level of suggestions.
+      - id: run_spectral
+        run: npm run validate_oad

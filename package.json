@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "format_oad": "prettier --write openapi_definitions",
+    "validate_oad_formatting": "prettier --check openapi_definitions",
+    "validate_oad": "spectral lint openapi_definitions/visualcrossing_weather_api.yaml --ruleset openapi_ruleset.spectral.yaml --fail-severity=warn"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3",
+    "prettier-plugin-multiline-arrays": "^3.0.0",
+    "@stoplight/spectral-cli": "^6.11.0"
+  }
+}
